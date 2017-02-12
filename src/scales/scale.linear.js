@@ -103,21 +103,38 @@ module.exports = function(Chart) {
 					var meta = chart.getDatasetMeta(datasetIndex);
 					if (chart.isDatasetVisible(datasetIndex) && IDMatches(meta)) {
 						helpers.each(dataset.data, function(rawValue, index) {
-							var value = +me.getRightValue(rawValue);
-							if (isNaN(value) || meta.data[index].hidden) {
-								return;
+							if (Array.isArray(rawValue))
+							{
+								var min = Math.min.apply(null, rawValue);
+								if (me.min === null && !isNaN(min)) {
+									me.min = min;
+								} else if (min < me.min) {
+									me.min = min;
+								} 
+								var max = Math.max.apply(null, rawValue);
+								if (me.max === null && !isNaN(max)) {
+									me.max = max;
+								} else if (max > me.max) {
+									me.max = max;
+								}
 							}
+							else {
+								var value = +me.getRightValue(rawValue);
+								if (isNaN(value) || meta.data[index].hidden) {
+									return;
+								}
 
-							if (me.min === null) {
-								me.min = value;
-							} else if (value < me.min) {
-								me.min = value;
-							}
+								if (me.min === null) {
+									me.min = value;
+								} else if (value < me.min) {
+									me.min = value;
+								}
 
-							if (me.max === null) {
-								me.max = value;
-							} else if (value > me.max) {
-								me.max = value;
+								if (me.max === null) {
+									me.max = value;
+								} else if (value > me.max) {
+									me.max = value;
+								}
 							}
 						});
 					}

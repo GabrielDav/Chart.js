@@ -21,6 +21,7 @@ require('./core/core.interaction')(Chart);
 require('./core/core.tooltip')(Chart);
 
 require('./elements/element.arc')(Chart);
+require('./elements/element.candle')(Chart);
 require('./elements/element.line')(Chart);
 require('./elements/element.point')(Chart);
 require('./elements/element.rectangle')(Chart);
@@ -36,6 +37,7 @@ require('./scales/scale.time')(Chart);
 // See Chart.core.datasetController.dataElementType
 require('./controllers/controller.bar')(Chart);
 require('./controllers/controller.bubble')(Chart);
+require('./controllers/controller.candlestick')(Chart);
 require('./controllers/controller.doughnut')(Chart);
 require('./controllers/controller.line')(Chart);
 require('./controllers/controller.polarArea')(Chart);
@@ -43,6 +45,7 @@ require('./controllers/controller.radar')(Chart);
 
 require('./charts/Chart.Bar')(Chart);
 require('./charts/Chart.Bubble')(Chart);
+require('./charts/Chart.Candlestick')(Chart);
 require('./charts/Chart.Doughnut')(Chart);
 require('./charts/Chart.Line')(Chart);
 require('./charts/Chart.PolarArea')(Chart);
